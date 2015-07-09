@@ -1,81 +1,56 @@
-var next_buttonA = document.getElementById("next_button");
+var user_input = document.getElementById("input");
+var submit = document.getElementById("submit_button");
+var next = document.getElementById("next_button");
 
 var question_correct = document.getElementById("correct");
 var question_incorrect = document.getElementById("incorrect");
 
+var score_screen = document.getElementById("score")
 
-var submit_question1 = document.getElementById("question1_submit")
-var submit_question2 = document.getElementById("question2_submit")
-var submit_question3 = document.getElementById("question3_submit")
-var submit_question4 = document.getElementById("question4_submit")
-
-var current = 1;
+var current = 0;
+var answers = ["d", "c", "b", "d"];
+var player_score = 0
 
 function change_question() {
-  if (current == 1) {
+  if (current == 0) {
     question1.style.display = "none";
     question2.style.display = "initial";
     current += 1;
-  } else if (current == 2) {
+  } else if (current == 1) {
     question2.style.display = "none";
     question3.style.display = "initial";
     current += 1
-  } else if (current == 3) {
+  } else if (current == 2) {
     question3.style.display = "none";
     question4.style.display = "initial";
+    current += 1;
+  } else if (current == 3) {
+    question4.style.display = "none";
+    user_input.style.display = "none";
+    submit.style.display = "none";
+    next.style.display = "none";
+    
+    score_screen.innerHTML = "You got " + player_score + " out of " + answers.length + " correct!"
   }
-  
+
   question_correct.style.display = "none";
   question_incorrect.style.display = "none";
+  user_input.value = ""
 }
 
-function check_answer1() {
-  var input_question1 = document.getElementById("question1_input").value;
-  var input_question1 = input_question1.toLowerCase();
+function check_answer() {
+  var user_input = document.getElementById("input").value;
+  var user_input = user_input.toLowerCase();
   
-  if (input_question1 == "d") {
+  if (user_input == answers[current]) {
     question_correct.style.display = "initial"
+    player_score += 1
   } else {
     question_incorrect.style.display = "initial"
   }
 }
 
-function check_answer2() {
-  var input_question2 = document.getElementById("question2_input").value;
-  var input_question2 = input_question2.toLowerCase();
-  
-  if (input_question2 == "c") {
-    question_correct.style.display = "initial"
-  } else {
-    question_incorrect.style.display = "initial"
-  }
-}
 
-function check_answer3() {
-  var input_question3 = document.getElementById("question3_input").value;
-  var input_question3 = input_question3.toLowerCase();
-  
-  if (input_question3 == "b") {
-    question_correct.style.display = "initial"
-  } else {
-    question_incorrect.style.display = "initial"
-  }
-}
+next.addEventListener("click", change_question);
 
-function check_answer4() {
-  var input_question4 = document.getElementById("question4_input").value;
-  var input_question4 = input_question4.toLowerCase();
-  
-  if (input_question4 == "d") {
-    question_correct.style.display = "initial"
-  } else {
-    question_incorrect.style.display = "initial"
-  }
-}
-
-next_buttonA.addEventListener("click", change_question);
-
-submit_question1.addEventListener("click", check_answer1);
-submit_question2.addEventListener("click", check_answer2);
-submit_question3.addEventListener("click", check_answer3);
-submit_question4.addEventListener("click", check_answer4);
+submit.addEventListener("click", check_answer);
