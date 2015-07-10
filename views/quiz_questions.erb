@@ -1,0 +1,17 @@
+<% questions = Question.all %>
+<% answers = Answer.all %>
+<% x = 1 %>
+
+<% questions.each do |question| %>
+  <div id="question<%= x %>">
+    <h2><%= question.question_text %></h2>
+    
+    <ul>
+      <% question.answer.each do |answer| %>
+      <li><%= answer %></li>
+      <% end %>
+    </ul>
+    
+  </div>
+  <% x += 1 %>
+<% end %>

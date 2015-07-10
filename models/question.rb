@@ -17,6 +17,9 @@ class Question
     @id = CONNECTION.last_insert_row_id
   end
   
-  
+  def answer
+    answer = CONNECTION.execute("SELECT answer_text FROM answers WHERE id = #{answer_id}")[0]["answer_text"]
+    answer = answer.split(", ")
+  end
   
 end

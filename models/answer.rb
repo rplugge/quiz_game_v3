@@ -21,4 +21,8 @@ class Answer
     CONNECTION.execute("DELETE FROM answers WHERE id = #{self.id};")
   end
   
+  def convert_answers
+    self.answer_text = self.answer_text.split(", ")
+    return self.answer_text
+  end
 end

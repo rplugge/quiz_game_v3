@@ -8,7 +8,7 @@ var question_incorrect = document.getElementById("incorrect");
 var score_screen = document.getElementById("score")
 
 var current = 0;
-var answers = ["d", "c", "b", "d"];
+var answers = ["d", "b", "c", "d"];
 var player_score = 0
 
 function change_question() {
